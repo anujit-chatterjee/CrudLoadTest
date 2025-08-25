@@ -27,4 +27,13 @@ public class BookService {
     }
 
 
+    /*public Optional<Book> updateByTitle(String title) {
+        return bookRepository.updateByTitle(title);
+    }*/
+
+    public Optional<Book> deleteByTitle(String title) {
+        return bookRepository.deleteByTitle(title);
+    }
+
+
 }

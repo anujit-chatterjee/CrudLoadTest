@@ -41,7 +41,9 @@ public class BookSaveSimulation extends Simulation {
             .feed(feedData())
             .exec(http("create-book").post("/library/book")
             .header("Content-Type", "application/json")
-                .body(StringBody("{ \"title\": \"${title}\" }")));
+                .body(StringBody("{ \"title\": \"#{title}\" }")));
+            //.exec(http("find-by-title").get("/library/findBookByTitle/${title}")
+                    //.queryParam("title", "${title}"));
     }
 
 
@@ -71,7 +73,7 @@ public class BookSaveSimulation extends Simulation {
         double rampUpIntervalInSeconds = 30;
 
         int rampUptimeSeconds = 300;
-        int duration = 300;
+        int duration = 50;
         return rampUsersPerSec(userRampUpPerInterval / (rampUpIntervalInSeconds)).to(totalUsers)
             .during(Duration.ofSeconds(rampUptimeSeconds + duration));
     }

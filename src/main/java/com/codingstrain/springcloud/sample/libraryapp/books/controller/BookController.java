@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +36,17 @@ public class BookController {
     public Optional<Book> findByTitle(@RequestParam String title) {
         return bookService.findByTitle(title);
     }
+
+    /*@PutMapping(value = "/updateBookByTitle", params = { "title" })
+    public Optional<Book> updateByTitle(@RequestParam String title) {
+        return bookService.updateByTitle(title);
+    }*/
+
+    @DeleteMapping(value = "/deleteBookByTitle", params = { "title" })
+    public Optional<Book> deleteByTitle(@RequestParam String title) {
+        return bookService.deleteByTitle(title);
+    }
+
 
 
 }
