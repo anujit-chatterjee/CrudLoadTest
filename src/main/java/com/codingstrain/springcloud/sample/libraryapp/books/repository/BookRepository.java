@@ -11,9 +11,9 @@ import com.codingstrain.springcloud.sample.libraryapp.books.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, String>, JpaSpecificationExecutor<Book> {
 
-    public Optional<Book> findByTitle(String title);
+     Optional<Book> findByTitle(String title);
 
-    //public Optional<Book> updateByTitle(String title);
+     Optional<Book> updateByTitle(String title);
 
-    public Optional<Book> deleteByTitle(String title);
+     Optional<Book> deleteByTitle(String title);
 }

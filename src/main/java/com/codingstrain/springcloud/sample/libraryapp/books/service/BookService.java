@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.codingstrain.springcloud.sample.libraryapp.books.model.Book;
 import com.codingstrain.springcloud.sample.libraryapp.books.repository.BookRepository;
+import scopt.Opt;
 
 @Service("bookService")
 public class BookService {
@@ -27,9 +28,17 @@ public class BookService {
     }
 
 
-    /*public Optional<Book> updateByTitle(String title) {
-        return bookRepository.updateByTitle(title);
-    }*/
+    public Optional<Book> updateByTitle(String title, Book book) {
+        Optional<Book> optionalBook = bookRepository.findByTitle(title);
+        if (optionalBook.isPresent()) {
+            Book oldBook = optionalBook.get();
+            oldBook.setTitle(book.getTitle());
+            optionalBook = Optional.of(save(oldBook));
+        } else {
+            optionalBook = Optional.of(new Book());
+        }
+        return optionalBook;
+    }
 
     public Optional<Book> deleteByTitle(String title) {
         return bookRepository.deleteByTitle(title);
